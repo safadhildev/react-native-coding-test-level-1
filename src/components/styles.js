@@ -24,13 +24,18 @@ export default StyleSheet.create({
   },
   container: {
     flex: 1,
-    paddingTop: 60,
     paddingHorizontal: 16,
   },
   errorText: {
     fontSize: 12,
     color: colors.red,
     paddingHorizontal: 10,
+  },
+  headerContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingHorizontal: 20,
+    paddingVertical: 20,
   },
   input: {
     fontSize: 16,
@@ -62,6 +67,7 @@ export default StyleSheet.create({
     left: 10,
     paddingHorizontal: 5,
   },
+
   labelText: {
     fontSize: 12,
     color: colors.grey,
@@ -95,5 +101,6 @@ export default StyleSheet.create({
     fontSize: 24,
     lineHeight: 32,
     fontWeight: 'bold',
+    textTransform: 'capitalize',
   },
 });

@@ -1,4 +1,4 @@
-import { View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import Text from './Text';
 import styles from './styles';
 import Button from './Button';
@@ -12,14 +12,7 @@ const Header = ({ title, disableBackAction = false }) => {
   };
 
   return (
-    <View
-      style={{
-        flexDirection: 'row',
-        alignItems: 'center',
-        paddingHorizontal: 20,
-        paddingVertical: 20,
-      }}
-    >
+    <View style={styles.headerContainer}>
       {!disableBackAction && (
         <View style={{ marginRight: 10 }}>
           <Button text="Back" onPress={onBack} />

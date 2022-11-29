@@ -1,6 +1,6 @@
-const routes = {
+export default {
+  Catalog: 'Catalog',
+  PokemonDetails: 'PokemonDetails',
   ContactUs: 'ContactUs',
   Main: 'Main',
 };
-
-export default routes;
