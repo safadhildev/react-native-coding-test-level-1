@@ -1,6 +1,6 @@
 export default {
   Catalog: 'Catalog',
-  PokemonDetails: 'PokemonDetails',
+  CatalogDetails: 'CatalogDetails',
   ContactUs: 'ContactUs',
   Main: 'Main',
 };

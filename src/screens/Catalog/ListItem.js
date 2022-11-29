@@ -6,10 +6,9 @@ import { constants } from '../../components';
 
 const ListItem = ({ data }) => {
   const navigation = useNavigation();
-  const dispatch = useDispatch();
 
   const onViewDetails = () => {
-    navigation.push(constants.routes.PokemonDetails, { name: data?.name, url: data?.url });
+    navigation.navigate(constants.routes.CatalogDetails, { name: data?.name, url: data?.url });
   };
 
   return (

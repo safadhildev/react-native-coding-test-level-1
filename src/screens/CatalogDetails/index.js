@@ -11,7 +11,8 @@ import {
   Image,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { useDispatch, useSelector } from 'react-redux';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import { Header, LoadingOverlay, Text } from '../../components';
 
 import { getPokemonDetails } from '../../redux/actions/pokemon';
@@ -107,36 +108,15 @@ const Move = ({ data = null }) => {
   );
 };
 
-const PokemonDetails = ({ navigation, route }) => {
+const CatalogDetails = ({ navigation, route, data, loading, reduxGetPokemonDetails }) => {
   const name = route?.params?.name || '';
   const url = route?.params?.url || '';
 
-  const isFocused = useIsFocused();
-  const dispatch = useDispatch();
-
-  const [data, setData] = useState(null);
-  const [loading, setLoading] = useState(true);
-
-  const { result } = useSelector((state) => ({
-    result: state.pokemon.details.data,
-  }));
+  console.log('[DEBUG] :: ', { data });
 
   useEffect(() => {
-    if (!_.isEmpty(result)) {
-      setTimeout(() => {
-        setData(result);
-        setLoading(false);
-      }, 1000);
-    }
-  }, [result]);
-
-  useEffect(() => {
-    dispatch(getPokemonDetails({ url }));
+    reduxGetPokemonDetails({ url });
   }, [url]);
-
-  useEffect(() => {
-    console.log(isFocused);
-  }, [isFocused]);
 
   if (loading) {
     return loading && <LoadingOverlay />;
@@ -370,4 +350,14 @@ const styles = StyleSheet.create({
   },
 });
 
-export default PokemonDetails;
+const mapStateToProps = (state) => {
+  return {
+    data: state.pokemon.details.data,
+    loading: state.pokemon.details.loading,
+  };
+};
+
+const mapDispatchToProps = (dispatch) =>
+  bindActionCreators({ reduxGetPokemonDetails: getPokemonDetails }, dispatch);
+
+export default connect(mapStateToProps, mapDispatchToProps)(CatalogDetails);

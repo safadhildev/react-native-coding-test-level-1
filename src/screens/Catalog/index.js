@@ -12,33 +12,22 @@ import ListItem from './ListItem';
 
 const initialURL = 'https://pokeapi.co/api/v2/pokemon/?offset=0&limit=10';
 
-const Catalog = () => {
-  const dispatch = useDispatch();
+const Catalog = ({ data, loading, status, reduxGetPokemon }) => {
   const flatListRef = useRef();
 
   const [currentPage, setCurrentPage] = useState(1);
 
-  const { data, loading, status } = useSelector((state) => ({
-    data: state.pokemon.list.data,
-    loading: state.pokemon.list.loading,
-    status: state.pokemon.list.status,
-  }));
-
   const onRefresh = () => {
-    setRefreshing(true);
-    dispatch(
-      getPokemon({
-        url: initialURL,
-      })
-    );
+    reduxGetPokemon({
+      url: initialURL,
+    });
   };
 
   const onNext = () => {
-    dispatch(
-      getPokemon({
-        url: data?.next,
-      })
-    );
+    reduxGetPokemon({
+      url: data?.next,
+    });
+
     setCurrentPage(currentPage + 1);
     if (flatListRef && flatListRef.current) {
       flatListRef.current.scrollToOffset({ animated: true, offset: 0 });
@@ -46,21 +35,18 @@ const Catalog = () => {
   };
 
   const onPrevious = () => {
-    dispatch(
-      getPokemon({
-        url: data?.previous,
-      })
-    );
+    reduxGetPokemon({
+      url: data?.previous,
+    });
+
     setCurrentPage(currentPage - 1);
   };
 
   useEffect(() => {
     if (_.isNull(data))
-      dispatch(
-        getPokemon({
-          url: initialURL,
-        })
-      );
+      reduxGetPokemon({
+        url: initialURL,
+      });
   }, []);
 
   return (
@@ -117,13 +103,15 @@ const styles = StyleSheet.create({
   },
 });
 
-const mapStateToProps = (state) => ({
-  count: state.count,
-});
+const mapStateToProps = (state) => {
+  return {
+    data: state.pokemon.list.data,
+    loading: state.pokemon.list.loading,
+    status: state.pokemon.list.status,
+  };
+};
 
-const ActionCreators = Object.assign({}, getPokemon);
-const mapDispatchToProps = (dispatch) => ({
-  actions: bindActionCreators(ActionCreators, dispatch),
-});
+const mapDispatchToProps = (dispatch) =>
+  bindActionCreators({ reduxGetPokemon: getPokemon }, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(Catalog);
