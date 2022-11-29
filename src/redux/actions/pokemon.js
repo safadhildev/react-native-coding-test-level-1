@@ -1,10 +1,9 @@
 import _ from 'lodash';
-import { GET_POKEMON } from '../constants';
+import { GET_POKEMON, GET_POKEMON_DETAILS } from '../constants';
 
-// export const getPokemon = (params) => ({
-//   type: GET_POKEMON.REQUEST,
-//   payload: params,
-// });
+export const resetPokemonDetails = () => ({
+  type: GET_POKEMON_DETAILS.RESET,
+});
 
 export const getPokemon = ({ url }) => {
   try {

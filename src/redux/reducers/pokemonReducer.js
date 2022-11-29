@@ -47,7 +47,14 @@ const pokemonReducer = (state = initialState, action) => {
           status: 'ERROR',
         },
       };
-
+    case GET_POKEMON_DETAILS.RESET: {
+      return {
+        ...state,
+        details: {
+          ...state.details,
+        },
+      };
+    }
     case GET_POKEMON_DETAILS.REQUEST:
       return {
         ...state,

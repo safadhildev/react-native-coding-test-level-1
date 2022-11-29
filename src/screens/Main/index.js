@@ -1,6 +1,6 @@
 import { View, StyleSheet } from 'react-native';
 import { Button, Container } from '../../components';
-import routes from '../../routes/routes';
+import constants from '../../components/constants';
 
 const styles = StyleSheet.create({
   buttonWrapper: {
@@ -24,7 +24,7 @@ const Main = ({ navigation }) => {
           <Button
             text="Contact Us"
             onPress={() => {
-              onNavigate(routes.ContactUs);
+              onNavigate(constants.routes.ContactUs);
             }}
           />
         </View>
@@ -32,7 +32,7 @@ const Main = ({ navigation }) => {
           <Button
             text="View Catalog"
             onPress={() => {
-              onNavigate(routes.Catalog);
+              onNavigate(constants.routes.Catalog);
             }}
           />
         </View>
