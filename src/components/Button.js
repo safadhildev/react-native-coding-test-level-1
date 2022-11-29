@@ -1,11 +1,13 @@
 import { TouchableOpacity, StyleSheet } from 'react-native';
+import _ from 'lodash';
 import Text from './Text';
 
 import styles from './styles';
 
-const buttonStyle = (variant) => (variant === 'outlined' ? styles.outlinedButton : styles.button);
+const buttonStyle = (variant) =>
+  _.isEqual(variant, 'outlined') ? styles.outlinedButton : styles.button;
 const buttonTextStyle = (variant) =>
-  variant === 'outlined' ? styles.outlinedButtonText : styles.buttonText;
+  _.isEqual(variant, 'outlined') ? styles.outlinedButtonText : styles.buttonText;
 
 const Button = ({ variant = 'outlined', text = '', disabled, onPress = () => {}, ...props }) => {
   return (

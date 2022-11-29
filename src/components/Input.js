@@ -9,13 +9,13 @@ import colors from './colors';
 const Input = ({
   placeholder = '',
   value = '',
+  editable = true,
   onChangeText = () => {},
   onBlur = () => {},
   error = false,
   errorText = '',
   ...props
 }) => {
-  const inputRef = useRef();
   const [inputFocused, setInputFocused] = useState(false);
 
   return (
@@ -24,18 +24,20 @@ const Input = ({
         <View
           pointerEvents="none"
           style={
-            inputFocused || !_.isEmpty(value)
-              ? styles.labelWrapper
-              : { position: 'absolute', zIndex: 1, bottom: 32, left: 10 }
+            inputFocused || !_.isEmpty(value) ? styles.labelWrapper : styles.placeholderWrapper
           }
         >
           <Text
-            style={inputFocused || !_.isEmpty(value) ? styles.labelText : styles.placeholderText}
+            style={[
+              inputFocused || !_.isEmpty(value) ? styles.labelText : styles.placeholderText,
+              { color: inputFocused ? colors.teal : colors.grey },
+            ]}
           >
             {placeholder}
           </Text>
         </View>
         <TextInput
+          editable={editable}
           allowFontScaling={false}
           onFocus={() => {
             setInputFocused(true);

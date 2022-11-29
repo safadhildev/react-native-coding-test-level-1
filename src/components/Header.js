@@ -15,6 +15,7 @@ const Header = ({ title, disableBackAction = false }) => {
     <View
       style={{
         flexDirection: 'row',
+        alignItems: 'center',
         paddingHorizontal: 20,
         paddingVertical: 20,
       }}

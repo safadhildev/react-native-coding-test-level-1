@@ -64,7 +64,7 @@ export default StyleSheet.create({
   },
   labelText: {
     fontSize: 12,
-    color: colors.teal,
+    color: colors.grey,
   },
   outlinedButton: {
     paddingHorizontal: 10,
