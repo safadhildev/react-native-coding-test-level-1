@@ -6,7 +6,7 @@ import { GET_POKEMON } from '../constants';
 //   payload: params,
 // });
 
-export const getPokemon = ({ url = 'https://pokeapi.co/api/v2/pokemon/?offset=0&limit=10' }) => {
+export const getPokemon = ({ url }) => {
   try {
     return async (dispatch) => {
       const response = await fetch(url, {
@@ -27,6 +27,32 @@ export const getPokemon = ({ url = 'https://pokeapi.co/api/v2/pokemon/?offset=0&
   } catch (err) {
     dispatch({
       type: GET_POKEMON.ERROR,
+      payload: err,
+    });
+  }
+};
+
+export const getPokemonDetails = ({ url }) => {
+  try {
+    return async (dispatch) => {
+      const response = await fetch(url, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+
+      if (_.isEqual(response.status, 200)) {
+        const result = await response.json();
+        dispatch({
+          type: GET_POKEMON_DETAILS.SUCCESS,
+          payload: result,
+        });
+      }
+    };
+  } catch (err) {
+    dispatch({
+      type: GET_POKEMON_DETAILS.ERROR,
       payload: err,
     });
   }
