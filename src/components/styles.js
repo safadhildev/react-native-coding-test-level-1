@@ -24,7 +24,6 @@ export default StyleSheet.create({
   },
   container: {
     flex: 1,
-    paddingTop: 60,
     paddingHorizontal: 16,
   },
   errorText: {
