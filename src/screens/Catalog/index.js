@@ -55,6 +55,7 @@ const Catalog = ({ data, loading, status, reduxGetPokemon }) => {
 
   return (
     <View style={styles.container}>
+      <StatusBar translucent barStyle="dark-content" backgroundColor="transparent" />
       <SafeAreaView style={{ flex: 1 }}>
         <Header title="Catalog" />
 

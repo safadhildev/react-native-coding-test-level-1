@@ -1,7 +1,14 @@
 import _ from 'lodash';
 import moment from 'moment';
 import { useEffect, useState } from 'react';
-import { View, StyleSheet, Alert } from 'react-native';
+import {
+  View,
+  StyleSheet,
+  Alert,
+  StatusBar,
+  TouchableWithoutFeedback,
+  Keyboard,
+} from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Input, Header, Button, DateInput } from '../../components';
 import colors from '../../components/colors';
@@ -53,31 +60,34 @@ const ContactUs = () => {
   }, [name, nameError, date, emailError, email]);
 
   return (
-    <View style={styles.container}>
-      <SafeAreaView style={{ flex: 1 }}>
-        <Header title="Contact Us" />
-        <View style={styles.formContainer}>
-          <Input
-            placeholder="Name"
-            value={name}
-            onChangeText={onChangeName}
-            error={nameError !== null}
-            errorText={nameError}
-          />
-          <Input
-            placeholder="Email"
-            value={email}
-            onChangeText={onChangeEmail}
-            error={emailError !== null}
-            errorText={emailError}
-          />
-          <DateInput placeholder="Birthday" value={date} setValue={onSelectDate} />
-          <View style={{ marginTop: 50 }}>
-            <Button variant="solid" text="Submit" disabled={disableSubmit} onPress={onSubmit} />
+    <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+      <View style={styles.container}>
+        <StatusBar translucent barStyle="dark-content" backgroundColor="transparent" />
+        <SafeAreaView style={{ flex: 1 }}>
+          <Header title="Contact Us" />
+          <View style={styles.formContainer}>
+            <Input
+              placeholder="Name"
+              value={name}
+              onChangeText={onChangeName}
+              error={nameError !== null}
+              errorText={nameError}
+            />
+            <Input
+              placeholder="Email"
+              value={email}
+              onChangeText={onChangeEmail}
+              error={emailError !== null}
+              errorText={emailError}
+            />
+            <DateInput placeholder="Birthday" value={date} setValue={onSelectDate} />
+            <View style={{ marginTop: 50 }}>
+              <Button variant="solid" text="Submit" disabled={disableSubmit} onPress={onSubmit} />
+            </View>
           </View>
-        </View>
-      </SafeAreaView>
-    </View>
+        </SafeAreaView>
+      </View>
+    </TouchableWithoutFeedback>
   );
 };
 

@@ -1,8 +1,10 @@
 import { useNavigation } from '@react-navigation/native';
 import _ from 'lodash';
 import { Text, View, StyleSheet, TouchableOpacity } from 'react-native';
+import { ArrowRightCircled, FastArrowRight, ArrowRight } from 'iconoir-react-native';
 import { useDispatch } from 'react-redux';
 import { constants } from '../../components';
+import colors from '../../components/colors';
 
 const ListItem = ({ data }) => {
   const navigation = useNavigation();
@@ -19,6 +21,9 @@ const ListItem = ({ data }) => {
       <TouchableOpacity activeOpacity={0.8} style={styles.buttonContainer} onPress={onViewDetails}>
         <View style={styles.buttonWrapper}>
           <Text style={styles.buttonText}>View</Text>
+          <View style={styles.iconWrapper}>
+            <ArrowRight color={colors.black} width={20} height={20} strokeWidth={3} />
+          </View>
         </View>
       </TouchableOpacity>
     </View>
@@ -40,7 +45,13 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     paddingTop: 50,
   },
-  text: { textTransform: 'uppercase', fontWeight: '500', fontSize: 30, color: '#FFFFFF' },
+  text: {
+    textTransform: 'uppercase',
+    fontWeight: 'bold',
+    fontSize: 30,
+    color: '#FFFFFF',
+    fontStyle: 'italic',
+  },
   buttonContainer: {
     backgroundColor: '#F0F0F0',
     borderTopWidth: 10,
@@ -49,10 +60,18 @@ const styles = StyleSheet.create({
   },
   buttonWrapper: {
     flex: 1,
+    flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
   },
   buttonText: { fontWeight: '400', fontSize: 24 },
+  iconWrapper: {
+    position: 'absolute',
+    right: 0,
+    top: 0,
+    bottom: 0,
+    justifyContent: 'center',
+  },
 });
 
 export default ListItem;
