@@ -1,4 +1,4 @@
-import { TouchableOpacity, View, Text } from 'react-native';
+import { TouchableOpacity, View, Text, Platform } from 'react-native';
 // import DateTimePicker from '@react-native-community/datetimepicker';
 import DateTimePickerModal from 'react-native-modal-datetime-picker';
 import _ from 'lodash';
@@ -28,19 +28,19 @@ const DateInput = ({ value = new Date(), placeholder = '', setValue = () => {} }
 
   return (
     <>
-      <TouchableOpacity onPress={onShowDatePicker} activeOpacity={0.8}>
-        <Input
-          value={_.isNull(value) ? 'DD/MM/YYYY' : moment(value).format('DD/MM/YYYY')}
-          placeholder={placeholder}
-          editable={false}
-        />
-      </TouchableOpacity>
+      <Input
+        value={_.isNull(value) ? 'DD/MM/YYYY' : moment(value).format('DD/MM/YYYY')}
+        placeholder={placeholder}
+        editable={false}
+        clickable
+        onPress={onShowDatePicker}
+      />
       <DateTimePickerModal
         isVisible={showDatePicker}
         mode="date"
         onConfirm={onChange}
         onCancel={onCloseModal}
-        isDarkModeEnabled={true}
+        isDarkModeEnabled={Platform.OS === 'ios'}
         maximumDate={new Date()}
       />
     </>

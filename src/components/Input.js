@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import { View, TextInput } from 'react-native';
+import { View, TextInput, TouchableOpacity } from 'react-native';
 import Text from './Text';
 
 import styles from './styles';
@@ -14,28 +14,23 @@ const Input = ({
   onBlur = () => {},
   error = false,
   errorText = '',
+  clickable = false,
+  onPress = () => {},
   ...props
 }) => {
   const [inputFocused, setInputFocused] = useState(false);
 
+  const Container = clickable ? TouchableOpacity : View;
   return (
-    <View style={{ marginBottom: 5 }} pointerEvents={!editable}>
+    <Container style={{ marginBottom: 5 }} onPress={onPress}>
       <View style={styles.inputContainer}>
-        <View
-          pointerEvents="none"
-          style={
-            inputFocused || !_.isEmpty(value) ? styles.labelWrapper : styles.placeholderWrapper
-          }
-        >
-          <Text
-            style={[
-              inputFocused || !_.isEmpty(value) ? styles.labelText : styles.placeholderText,
-              { color: inputFocused ? colors.teal : colors.grey },
-            ]}
-          >
-            {placeholder}
-          </Text>
-        </View>
+        {(inputFocused || !_.isEmpty(value)) && (
+          <View pointerEvents="none" style={styles.labelWrapper}>
+            <Text style={[styles.labelText, { color: inputFocused ? colors.teal : colors.grey }]}>
+              {placeholder}
+            </Text>
+          </View>
+        )}
         <TextInput
           editable={editable}
           allowFontScaling={false}
@@ -47,6 +42,8 @@ const Input = ({
             onBlur();
           }}
           value={value}
+          placeholder={inputFocused ? '' : placeholder}
+          placeholderTextColor={colors.black}
           onChangeText={onChangeText}
           style={[
             styles.input,
@@ -56,8 +53,10 @@ const Input = ({
           {...props}
         />
       </View>
-      <Text style={[styles.errorText, { position: 'absolute', bottom: 0 }]}>{errorText}</Text>
-    </View>
+      {error && (
+        <Text style={[styles.errorText, { position: 'absolute', bottom: 0 }]}>{errorText}</Text>
+      )}
+    </Container>
   );
 };
 

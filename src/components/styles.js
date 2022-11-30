@@ -39,18 +39,20 @@ export default StyleSheet.create({
   },
   input: {
     fontSize: 16,
-    lineHeight: 24,
+    lineHeight: 18,
     borderColor: colors.grey,
     borderRadius: 5,
     borderWidth: 1,
     paddingHorizontal: 15,
-    paddingVertical: 8,
+    paddingTop: 18,
+    paddingBottom: 15,
+    color: colors.black,
   },
   inputContainer: {
     position: 'relative',
     justifyContent: 'flex-end',
     paddingTop: 10,
-    paddingBottom: 20,
+    paddingBottom: 25,
   },
   inputWrapper: {
     borderRadius: 5,
@@ -94,7 +96,7 @@ export default StyleSheet.create({
     lineHeight: 24,
     color: colors.grey,
   },
-  placeholderWrapper: { position: 'absolute', zIndex: 1, bottom: 32, left: 10 },
+  placeholderWrapper: { position: 'absolute', zIndex: 1, bottom: 0, left: 10 },
   text: {
     fontSize: 16,
     lineHeight: 24,
