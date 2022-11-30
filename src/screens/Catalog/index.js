@@ -43,10 +43,14 @@ const Catalog = ({ data, loading, status, reduxGetPokemon }) => {
   };
 
   useEffect(() => {
-    if (_.isNull(data))
+    if (_.isNull(data)) {
+      console.log('[DEBUG] - SHOULD GET DATA');
       reduxGetPokemon({
         url: initialURL,
       });
+    } else {
+      console.log('[DEBUG] - NO NEED GET DATA');
+    }
   }, []);
 
   return (

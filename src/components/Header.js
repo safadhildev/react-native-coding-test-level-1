@@ -1,8 +1,9 @@
-import { StyleSheet, View } from 'react-native';
+import { TouchableOpacity, View } from 'react-native';
 import Text from './Text';
 import styles from './styles';
-import Button from './Button';
 import { useNavigation } from '@react-navigation/native';
+import { ArrowLeft } from 'iconoir-react-native';
+import colors from './colors';
 
 const Header = ({ title, disableBackAction = false }) => {
   const navigation = useNavigation();
@@ -15,7 +16,9 @@ const Header = ({ title, disableBackAction = false }) => {
     <View style={styles.headerContainer}>
       {!disableBackAction && (
         <View style={{ marginRight: 10 }}>
-          <Button text="Back" onPress={onBack} />
+          <TouchableOpacity activeOpacity={0.8} onPress={onBack}>
+            <ArrowLeft color={colors.black} height={28} width={28} strokeWidth={3} />
+          </TouchableOpacity>
         </View>
       )}
       <Text style={styles.title}>{title}</Text>

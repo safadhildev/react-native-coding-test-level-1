@@ -61,7 +61,7 @@ export default StyleSheet.create({
   },
   labelWrapper: {
     position: 'absolute',
-    backgroundColor: '#ffffff',
+    backgroundColor: colors.white,
     zIndex: 1,
     top: 0,
     left: 10,

@@ -1,5 +1,5 @@
-import { View, StyleSheet, StatusBar } from 'react-native';
-import { Button, Container } from '../../components';
+import { View, StyleSheet, StatusBar, TouchableOpacity } from 'react-native';
+import { Text } from '../../components';
 import colors from '../../components/colors';
 import constants from '../../components/constants';
 
@@ -11,15 +11,35 @@ const Main = ({ navigation }) => {
   return (
     <>
       <View style={styles.container}>
-        <StatusBar translucent barStyle="light-content" backgroundColor="transparent" />
-        <View style={styles.topContainer}></View>
+        {/* <StatusBar translucent barStyle="light-content" backgroundColor="transparent" /> */}
+        <View style={styles.topContainer}>
+          <TouchableOpacity
+            activeOpacity={0.8}
+            style={styles.touchable}
+            onPress={() => {
+              onNavigate(constants.routes.ContactUs);
+            }}
+          >
+            <Text style={[styles.text, { color: colors.white }]}>Contact Us</Text>
+          </TouchableOpacity>
+        </View>
         <View style={styles.border} />
-        <View style={styles.middleContainer}>
+        <View pointerEvents="none" style={styles.middleContainer}>
           <View style={styles.outerRing}>
             <View style={styles.innerRing} />
           </View>
         </View>
-        <View style={styles.bottomContainer}></View>
+        <View style={styles.bottomContainer}>
+          <TouchableOpacity
+            activeOpacity={0.8}
+            style={styles.touchable}
+            onPress={() => {
+              onNavigate(constants.routes.Catalog);
+            }}
+          >
+            <Text style={styles.text}>View Catalog</Text>
+          </TouchableOpacity>
+        </View>
       </View>
     </>
   );
@@ -40,9 +60,18 @@ const styles = StyleSheet.create({
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
+    pointerEvents: 'none',
   },
-  topContainer: { flex: 1, backgroundColor: colors.red },
-  bottomContainer: { flex: 1, backgroundColor: colors.white },
+  topContainer: {
+    flex: 1,
+    backgroundColor: colors.red,
+  },
+  bottomContainer: {
+    flex: 1,
+    backgroundColor: colors.white,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
   buttonWrapper: {
     padding: 20,
   },
@@ -70,6 +99,17 @@ const styles = StyleSheet.create({
     height: 50,
     borderWidth: 3,
     backgroundColor: '#F0F0F0',
+  },
+  text: {
+    fontSize: 44,
+    lineHeight: 50,
+    fontWeight: 'bold',
+    color: colors.black,
+  },
+  touchable: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 });
 
