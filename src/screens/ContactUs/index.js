@@ -1,12 +1,20 @@
-import _, { isNull } from 'lodash';
+import _ from 'lodash';
 import moment from 'moment';
 import { useEffect, useState } from 'react';
-import { View, ScrollView, StyleSheet, Alert } from 'react-native';
+import {
+  View,
+  StyleSheet,
+  Alert,
+  StatusBar,
+  TouchableWithoutFeedback,
+  Keyboard,
+} from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { Container, commonStyles, Text, Input, Header, Button, DateInput } from '../../components';
+import { Input, Header, Button, DateInput } from '../../components';
+import colors from '../../components/colors';
 import { validateEmail, validateName } from '../../utils/validate';
 
-const ContactUs = ({ navigation }) => {
+const ContactUs = () => {
   const [name, setName] = useState(null);
   const [email, setEmail] = useState(null);
   const [date, setDate] = useState(null);
@@ -42,8 +50,8 @@ const ContactUs = ({ navigation }) => {
       !_.isEmpty(name) &&
       !_.isEmpty(email) &&
       !_.isNull(date) &&
-      isNull(nameError) &&
-      isNull(emailError)
+      _.isNull(nameError) &&
+      _.isNull(emailError)
     ) {
       setDisableSubmit(false);
     } else {
@@ -52,36 +60,39 @@ const ContactUs = ({ navigation }) => {
   }, [name, nameError, date, emailError, email]);
 
   return (
-    <View style={styles.container}>
-      <SafeAreaView style={{ flex: 1 }}>
-        <Header title="Contact Us" />
-        <View style={styles.formContainer}>
-          <Input
-            placeholder="Name"
-            value={name}
-            onChangeText={onChangeName}
-            error={nameError !== null}
-            errorText={nameError}
-          />
-          <Input
-            placeholder="Email"
-            value={email}
-            onChangeText={onChangeEmail}
-            error={emailError !== null}
-            errorText={emailError}
-          />
-          <DateInput placeholder="Birthday" value={date} setValue={onSelectDate} />
-          <View style={{ marginTop: 50 }}>
-            <Button variant="solid" text="Submit" disabled={disableSubmit} onPress={onSubmit} />
+    <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+      <View style={styles.container}>
+        <StatusBar translucent barStyle="dark-content" backgroundColor="transparent" />
+        <SafeAreaView style={{ flex: 1 }}>
+          <Header title="Contact Us" />
+          <View style={styles.formContainer}>
+            <Input
+              placeholder="Name"
+              value={name}
+              onChangeText={onChangeName}
+              error={nameError !== null}
+              errorText={nameError}
+            />
+            <Input
+              placeholder="Email"
+              value={email}
+              onChangeText={onChangeEmail}
+              error={emailError !== null}
+              errorText={emailError}
+            />
+            <DateInput placeholder="Birthday" value={date} setValue={onSelectDate} />
+            <View style={{ marginTop: 50 }}>
+              <Button variant="solid" text="Submit" disabled={disableSubmit} onPress={onSubmit} />
+            </View>
           </View>
-        </View>
-      </SafeAreaView>
-    </View>
+        </SafeAreaView>
+      </View>
+    </TouchableWithoutFeedback>
   );
 };
 
 const styles = StyleSheet.create({
-  container: { flex: 1, backgroundColor: '#FFFFFF' },
+  container: { flex: 1, backgroundColor: colors.white },
   formContainer: {
     flex: 1,
     paddingHorizontal: 20,

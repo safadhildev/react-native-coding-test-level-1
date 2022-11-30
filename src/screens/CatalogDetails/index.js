@@ -9,9 +9,11 @@ import {
   StyleSheet,
   Dimensions,
   Image,
+  StatusBar,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { useDispatch, useSelector } from 'react-redux';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import { Header, LoadingOverlay, Text } from '../../components';
 
 import { getPokemonDetails } from '../../redux/actions/pokemon';
@@ -20,11 +22,13 @@ import { boolToString } from '../../utils/functions';
 
 const CardView = ({ label, value, customContainerStyle }) => {
   return (
-    <View style={[{ marginVertical: 20, marginHorizontal: 10, flex: 1 }, customContainerStyle]}>
-      <View style={{}}>
+    <View style={[styles.card, customContainerStyle]}>
+      <View style={[styles.subTitleWrapper, { marginHorizontal: 10 }]}>
         <Text style={styles.subTitle}>{label}</Text>
       </View>
-      <Text style={styles.textAnswer}>{value}</Text>
+      <View style={styles.cardContent}>
+        <Text style={styles.textAnswer}>{value}</Text>
+      </View>
     </View>
   );
 };
@@ -32,7 +36,7 @@ const CardView = ({ label, value, customContainerStyle }) => {
 const TableView = ({ label, value }) => {
   return (
     <View style={styles.tableWrapper}>
-      <View style={{}}>
+      <View>
         <Text>{label}</Text>
       </View>
       <Text style={{ marginHorizontal: 5 }}>:</Text>
@@ -107,36 +111,15 @@ const Move = ({ data = null }) => {
   );
 };
 
-const PokemonDetails = ({ navigation, route }) => {
+const CatalogDetails = ({ navigation, route, data, loading, reduxGetPokemonDetails }) => {
   const name = route?.params?.name || '';
   const url = route?.params?.url || '';
 
-  const isFocused = useIsFocused();
-  const dispatch = useDispatch();
-
-  const [data, setData] = useState(null);
-  const [loading, setLoading] = useState(true);
-
-  const { result } = useSelector((state) => ({
-    result: state.pokemon.details.data,
-  }));
+  console.log('[DEBUG] :: ', { data });
 
   useEffect(() => {
-    if (!_.isEmpty(result)) {
-      setTimeout(() => {
-        setData(result);
-        setLoading(false);
-      }, 1000);
-    }
-  }, [result]);
-
-  useEffect(() => {
-    dispatch(getPokemonDetails({ url }));
+    reduxGetPokemonDetails({ url });
   }, [url]);
-
-  useEffect(() => {
-    console.log(isFocused);
-  }, [isFocused]);
 
   if (loading) {
     return loading && <LoadingOverlay />;
@@ -144,6 +127,7 @@ const PokemonDetails = ({ navigation, route }) => {
 
   return (
     <>
+      <StatusBar translucent barStyle="dark-content" backgroundColor="transparent" />
       <SafeAreaView style={{ flex: 1 }}>
         <Header title={name} />
         {!_.isEmpty(data) && (
@@ -181,7 +165,7 @@ const PokemonDetails = ({ navigation, route }) => {
             <CardView
               label="Name"
               value={data?.name}
-              customContainerStyle={{ marginHorizontal: 20 }}
+              customContainerStyle={{ marginHorizontal: 10 }}
             />
 
             <View
@@ -199,19 +183,19 @@ const PokemonDetails = ({ navigation, route }) => {
             <CardView
               label="Is Default"
               value={boolToString(data?.is_default)}
-              customContainerStyle={{ marginHorizontal: 20 }}
+              customContainerStyle={{ marginHorizontal: 10 }}
             />
 
             {/* ENCOUNTER */}
             <CardView
               label="Location area encounter"
               value={data?.location_area_encounters}
-              customContainerStyle={{ marginHorizontal: 20 }}
+              customContainerStyle={{ marginHorizontal: 10 }}
             />
 
             {/* ABILITIES */}
             <View style={styles.section}>
-              <View style={styles.wrapper}>
+              <View style={styles.subTitleWrapper}>
                 <Text style={styles.subTitle}>Abilities</Text>
               </View>
               <FlatList
@@ -228,19 +212,19 @@ const PokemonDetails = ({ navigation, route }) => {
             <CardView
               label="Species"
               value={data?.species?.url}
-              customContainerStyle={{ marginHorizontal: 20 }}
+              customContainerStyle={{ marginHorizontal: 10 }}
             />
 
             {/* BASE EXP */}
             <CardView
               label="Base Experience"
               value={data?.base_experience}
-              customContainerStyle={{ marginHorizontal: 20 }}
+              customContainerStyle={{ marginHorizontal: 10 }}
             />
 
             {/* Types */}
             <View style={styles.section}>
-              <View style={styles.wrapper}>
+              <View style={styles.subTitleWrapper}>
                 <Text style={styles.subTitle}>Types</Text>
               </View>
               <FlatList
@@ -256,7 +240,7 @@ const PokemonDetails = ({ navigation, route }) => {
 
             {/* STATS */}
             <View style={styles.section}>
-              <View style={styles.wrapper}>
+              <View style={styles.subTitleWrapper}>
                 <Text style={styles.subTitle}>Stats</Text>
               </View>
               <FlatList
@@ -273,7 +257,7 @@ const PokemonDetails = ({ navigation, route }) => {
             {/* HELD ITEMS */}
             {!_.isEmpty(data?.held_items) && (
               <View style={styles.section}>
-                <View style={styles.wrapper}>
+                <View style={styles.subTitleWrapper}>
                   <Text style={styles.subTitle}>Held Items</Text>
                 </View>
                 <FlatList
@@ -290,7 +274,7 @@ const PokemonDetails = ({ navigation, route }) => {
 
             {/* GAME INDICES */}
             <View style={styles.section}>
-              <View style={styles.wrapper}>
+              <View style={styles.subTitleWrapper}>
                 <Text style={styles.subTitle}>Moves</Text>
               </View>
               <FlatList
@@ -306,7 +290,7 @@ const PokemonDetails = ({ navigation, route }) => {
 
             {/* GAME INDICES */}
             <View style={styles.section}>
-              <View style={styles.wrapper}>
+              <View style={styles.subTitleWrapper}>
                 <Text style={styles.subTitle}>Game Indices</Text>
               </View>
               <FlatList
@@ -336,23 +320,30 @@ const styles = StyleSheet.create({
     padding: 10,
     borderRadius: 10,
   },
-  wrapper: {
-    flex: 1,
-    paddingHorizontal: 20,
+  card: { marginVertical: 20, flex: 1 },
+  cardContent: {
+    backgroundColor: '#E0E0E0',
+    borderBottomLeftRadius: 5,
+    borderBottomRightRadius: 5,
+    marginHorizontal: 10,
   },
   section: {
     marginVertical: 20,
+    // paddingHorizontal: 10,
   },
-  subTitle: {
-    flex: 1,
-    fontWeight: '500',
+  subTitleWrapper: {
+    marginHorizontal: 20,
     backgroundColor: '#D32F2F',
-    color: '#FFFFFF',
     paddingHorizontal: 10,
     borderTopLeftRadius: 5,
     borderTopRightRadius: 5,
     borderBottomColor: '#212121',
     borderBottomWidth: 3,
+  },
+  subTitle: {
+    flex: 1,
+    fontWeight: '500',
+    color: '#FFFFFF',
   },
   tableWrapper: {
     minWidth: 100,
@@ -363,11 +354,18 @@ const styles = StyleSheet.create({
   },
   textAnswer: {
     fontWeight: '600',
-    backgroundColor: '#E0E0E0',
-    borderBottomLeftRadius: 5,
-    borderBottomRightRadius: 5,
     paddingHorizontal: 10,
   },
 });
 
-export default PokemonDetails;
+const mapStateToProps = (state) => {
+  return {
+    data: state.pokemon.details.data,
+    loading: state.pokemon.details.loading,
+  };
+};
+
+const mapDispatchToProps = (dispatch) =>
+  bindActionCreators({ reduxGetPokemonDetails: getPokemonDetails }, dispatch);
+
+export default connect(mapStateToProps, mapDispatchToProps)(CatalogDetails);

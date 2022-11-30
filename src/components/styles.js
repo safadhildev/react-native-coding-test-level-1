@@ -35,7 +35,7 @@ export default StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     paddingHorizontal: 20,
-    paddingVertical: 20,
+    paddingVertical: 10,
   },
   input: {
     fontSize: 16,
@@ -61,16 +61,18 @@ export default StyleSheet.create({
   },
   labelWrapper: {
     position: 'absolute',
-    backgroundColor: '#ffffff',
+    backgroundColor: colors.white,
     zIndex: 1,
     top: 0,
     left: 10,
     paddingHorizontal: 5,
   },
-
   labelText: {
     fontSize: 12,
     color: colors.grey,
+  },
+  modalWrapper: {
+    position: 'absolute',
   },
   outlinedButton: {
     paddingHorizontal: 10,

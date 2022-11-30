@@ -1,23 +1,29 @@
-import { TouchableOpacity } from 'react-native';
-import DateTimePicker from '@react-native-community/datetimepicker';
+import { TouchableOpacity, View, Text } from 'react-native';
+// import DateTimePicker from '@react-native-community/datetimepicker';
+import DateTimePickerModal from 'react-native-modal-datetime-picker';
 import _ from 'lodash';
 
 import Input from './Input';
 import { useState } from 'react';
 import moment from 'moment';
+import styles from './styles';
+import colors from './colors';
 
 const DateInput = ({ value = new Date(), placeholder = '', setValue = () => {} }) => {
   const [showDatePicker, setShowDatePicker] = useState(false);
 
-  const onChange = (event, selectedDate) => {
-    if (_.isEqual(event.type, 'set')) {
-      setValue(selectedDate);
-    }
+  const onCloseModal = () => {
     setShowDatePicker(false);
+  };
+
+  const onChange = (selectedDate) => {
+    setValue(selectedDate);
+    onCloseModal();
   };
 
   const onShowDatePicker = () => {
     setShowDatePicker(true);
+    console.log('TEST');
   };
 
   return (
@@ -29,16 +35,14 @@ const DateInput = ({ value = new Date(), placeholder = '', setValue = () => {} }
           editable={false}
         />
       </TouchableOpacity>
-      {showDatePicker && (
-        <DateTimePicker
-          testID="dateTimePicker"
-          value={_.isNull(value) ? new Date() : value}
-          mode="date"
-          is24Hour={true}
-          onChange={onChange}
-          maximumDate={new Date()}
-        />
-      )}
+      <DateTimePickerModal
+        isVisible={showDatePicker}
+        mode="date"
+        onConfirm={onChange}
+        onCancel={onCloseModal}
+        isDarkModeEnabled={true}
+        maximumDate={new Date()}
+      />
     </>
   );
 };

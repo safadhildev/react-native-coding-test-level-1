@@ -19,7 +19,7 @@ const Input = ({
   const [inputFocused, setInputFocused] = useState(false);
 
   return (
-    <View style={{ marginBottom: 5 }}>
+    <View style={{ marginBottom: 5 }} pointerEvents={!editable}>
       <View style={styles.inputContainer}>
         <View
           pointerEvents="none"
@@ -48,7 +48,11 @@ const Input = ({
           }}
           value={value}
           onChangeText={onChangeText}
-          style={[styles.input, inputFocused && { borderColor: colors.teal }]}
+          style={[
+            styles.input,
+            inputFocused && { borderColor: colors.teal },
+            !editable && { color: colors.grey },
+          ]}
           {...props}
         />
       </View>
