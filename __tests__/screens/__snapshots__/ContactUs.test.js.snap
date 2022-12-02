@@ -1,0 +1,524 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`render test render screen (ContactUs) correctly 1`] = `
+<RNCSafeAreaProvider
+  onInsetsChange={[Function]}
+  style={
+    [
+      {
+        "flex": 1,
+      },
+      undefined,
+    ]
+  }
+>
+  <RNSScreenStack
+    style={
+      {
+        "flex": 1,
+      }
+    }
+  >
+    <RNSScreen
+      collapsable={false}
+      forwardedRef={[Function]}
+      nativeBackButtonDismissalEnabled={false}
+      onAppear={[Function]}
+      onDisappear={[Function]}
+      onDismissed={[Function]}
+      onHeaderBackButtonClicked={[Function]}
+      onNativeDismissCancelled={[Function]}
+      onTransitionProgress={[Function]}
+      onWillDisappear={[Function]}
+      replaceAnimation="push"
+      stackPresentation="push"
+      style={
+        {
+          "bottom": 0,
+          "left": 0,
+          "position": "absolute",
+          "right": 0,
+          "top": 0,
+        }
+      }
+      swipeDirection="horizontal"
+    >
+      <RNSScreenStackHeaderConfig
+        backButtonInCustomView={false}
+        backgroundColor="rgb(255, 255, 255)"
+        color="rgb(0, 122, 255)"
+        direction="ltr"
+        disableBackButtonMenu={false}
+        hidden={true}
+        hideBackButton={false}
+        largeTitleHideShadow={false}
+        title="ContactUs"
+        titleColor="rgb(28, 28, 30)"
+        topInsetEnabled={false}
+        translucent={false}
+      />
+      <View
+        accessibilityElementsHidden={false}
+        importantForAccessibility="auto"
+        style={
+          {
+            "flex": 1,
+            "flexDirection": "column-reverse",
+          }
+        }
+      >
+        <View
+          style={
+            [
+              {
+                "flex": 1,
+              },
+              {
+                "backgroundColor": "rgb(242, 242, 242)",
+              },
+              undefined,
+            ]
+          }
+        >
+          <View
+            accessible={true}
+            focusable={true}
+            onClick={[Function]}
+            onResponderGrant={[Function]}
+            onResponderMove={[Function]}
+            onResponderRelease={[Function]}
+            onResponderTerminate={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
+            style={
+              {
+                "backgroundColor": "#F0F0F0",
+                "flex": 1,
+              }
+            }
+          >
+            <RNCSafeAreaView
+              edges={
+                [
+                  "bottom",
+                  "left",
+                  "right",
+                  "top",
+                ]
+              }
+              style={
+                {
+                  "flex": 1,
+                }
+              }
+            >
+              <View
+                style={
+                  {
+                    "alignItems": "center",
+                    "flexDirection": "row",
+                    "paddingHorizontal": 20,
+                    "paddingVertical": 10,
+                  }
+                }
+              >
+                <View
+                  style={
+                    {
+                      "marginRight": 10,
+                    }
+                  }
+                >
+                  <View
+                    accessible={true}
+                    collapsable={false}
+                    focusable={true}
+                    onClick={[Function]}
+                    onResponderGrant={[Function]}
+                    onResponderMove={[Function]}
+                    onResponderRelease={[Function]}
+                    onResponderTerminate={[Function]}
+                    onResponderTerminationRequest={[Function]}
+                    onStartShouldSetResponder={[Function]}
+                    style={
+                      {
+                        "opacity": 1,
+                      }
+                    }
+                    testID="header-back-button"
+                  >
+                    <RNSVGSvgView
+                      align="xMidYMid"
+                      bbHeight={28}
+                      bbWidth={28}
+                      color={4280427045}
+                      fill="none"
+                      focusable={false}
+                      height={28}
+                      meetOrSlice={0}
+                      minX={0}
+                      minY={0}
+                      strokeWidth={3}
+                      style={
+                        [
+                          {
+                            "backgroundColor": "transparent",
+                            "borderWidth": 0,
+                          },
+                          {
+                            "flex": 0,
+                            "height": 28,
+                            "width": 28,
+                          },
+                        ]
+                      }
+                      tintColor={4280427045}
+                      vbHeight={24}
+                      vbWidth={24}
+                      width={28}
+                    >
+                      <RNSVGGroup
+                        fill={null}
+                        propList={
+                          [
+                            "fill",
+                            "strokeWidth",
+                          ]
+                        }
+                        strokeWidth={3}
+                      >
+                        <RNSVGPath
+                          d="M18.5 12H6m0 0l6-6m-6 6l6 6"
+                          propList={
+                            [
+                              "stroke",
+                              "strokeLinecap",
+                              "strokeLinejoin",
+                            ]
+                          }
+                          stroke={
+                            [
+                              2,
+                            ]
+                          }
+                          strokeLinecap={1}
+                          strokeLinejoin={1}
+                        />
+                      </RNSVGGroup>
+                    </RNSVGSvgView>
+                  </View>
+                </View>
+                <Text
+                  allowFontScaling={false}
+                  style={
+                    [
+                      {
+                        "fontSize": 16,
+                        "lineHeight": 24,
+                      },
+                      {
+                        "fontSize": 24,
+                        "fontWeight": "bold",
+                        "lineHeight": 32,
+                        "textTransform": "capitalize",
+                      },
+                    ]
+                  }
+                  testID="header-title"
+                >
+                  Contact Us
+                </Text>
+              </View>
+              <View
+                style={
+                  {
+                    "flex": 1,
+                    "paddingBottom": 50,
+                    "paddingHorizontal": 20,
+                  }
+                }
+              >
+                <View
+                  onPress={[Function]}
+                  style={
+                    {
+                      "marginBottom": 5,
+                    }
+                  }
+                >
+                  <View
+                    style={
+                      {
+                        "justifyContent": "flex-end",
+                        "paddingBottom": 25,
+                        "paddingTop": 10,
+                        "position": "relative",
+                      }
+                    }
+                  >
+                    <TextInput
+                      allowFontScaling={false}
+                      editable={true}
+                      onBlur={[Function]}
+                      onChangeText={[Function]}
+                      onFocus={[Function]}
+                      placeholder="Name"
+                      placeholderTextColor="#222225"
+                      style={
+                        [
+                          {
+                            "borderColor": "#757575",
+                            "borderRadius": 5,
+                            "borderWidth": 1,
+                            "color": "#222225",
+                            "fontSize": 16,
+                            "lineHeight": 18,
+                            "paddingBottom": 15,
+                            "paddingHorizontal": 15,
+                            "paddingTop": 18,
+                          },
+                          false,
+                          false,
+                        ]
+                      }
+                      value={null}
+                    />
+                  </View>
+                </View>
+                <View
+                  onPress={[Function]}
+                  style={
+                    {
+                      "marginBottom": 5,
+                    }
+                  }
+                >
+                  <View
+                    style={
+                      {
+                        "justifyContent": "flex-end",
+                        "paddingBottom": 25,
+                        "paddingTop": 10,
+                        "position": "relative",
+                      }
+                    }
+                  >
+                    <TextInput
+                      allowFontScaling={false}
+                      editable={true}
+                      onBlur={[Function]}
+                      onChangeText={[Function]}
+                      onFocus={[Function]}
+                      placeholder="Email"
+                      placeholderTextColor="#222225"
+                      style={
+                        [
+                          {
+                            "borderColor": "#757575",
+                            "borderRadius": 5,
+                            "borderWidth": 1,
+                            "color": "#222225",
+                            "fontSize": 16,
+                            "lineHeight": 18,
+                            "paddingBottom": 15,
+                            "paddingHorizontal": 15,
+                            "paddingTop": 18,
+                          },
+                          false,
+                          false,
+                        ]
+                      }
+                      value={null}
+                    />
+                  </View>
+                  <Text
+                    allowFontScaling={false}
+                    style={
+                      [
+                        {
+                          "fontSize": 16,
+                          "lineHeight": 24,
+                        },
+                        [
+                          {
+                            "color": "#D32F2F",
+                            "fontSize": 12,
+                            "paddingHorizontal": 10,
+                          },
+                          {
+                            "bottom": 0,
+                            "position": "absolute",
+                          },
+                        ],
+                      ]
+                    }
+                  />
+                </View>
+                <View
+                  accessible={true}
+                  collapsable={false}
+                  focusable={true}
+                  onClick={[Function]}
+                  onResponderGrant={[Function]}
+                  onResponderMove={[Function]}
+                  onResponderRelease={[Function]}
+                  onResponderTerminate={[Function]}
+                  onResponderTerminationRequest={[Function]}
+                  onStartShouldSetResponder={[Function]}
+                  style={
+                    {
+                      "marginBottom": 5,
+                      "opacity": 1,
+                    }
+                  }
+                >
+                  <View
+                    style={
+                      {
+                        "justifyContent": "flex-end",
+                        "paddingBottom": 25,
+                        "paddingTop": 10,
+                        "position": "relative",
+                      }
+                    }
+                  >
+                    <View
+                      pointerEvents="none"
+                      style={
+                        {
+                          "backgroundColor": "#F0F0F0",
+                          "left": 10,
+                          "paddingHorizontal": 5,
+                          "position": "absolute",
+                          "top": 0,
+                          "zIndex": 1,
+                        }
+                      }
+                    >
+                      <Text
+                        allowFontScaling={false}
+                        style={
+                          [
+                            {
+                              "fontSize": 16,
+                              "lineHeight": 24,
+                            },
+                            [
+                              {
+                                "color": "#757575",
+                                "fontSize": 12,
+                              },
+                              {
+                                "color": "#757575",
+                              },
+                            ],
+                          ]
+                        }
+                      >
+                        Birthday
+                      </Text>
+                    </View>
+                    <TextInput
+                      allowFontScaling={false}
+                      editable={false}
+                      onBlur={[Function]}
+                      onChangeText={[Function]}
+                      onFocus={[Function]}
+                      placeholder="Birthday"
+                      placeholderTextColor="#222225"
+                      style={
+                        [
+                          {
+                            "borderColor": "#757575",
+                            "borderRadius": 5,
+                            "borderWidth": 1,
+                            "color": "#222225",
+                            "fontSize": 16,
+                            "lineHeight": 18,
+                            "paddingBottom": 15,
+                            "paddingHorizontal": 15,
+                            "paddingTop": 18,
+                          },
+                          false,
+                          {
+                            "color": "#757575",
+                          },
+                        ]
+                      }
+                      value="DD/MM/YYYY"
+                    />
+                  </View>
+                </View>
+                <Modal
+                  animationType="none"
+                  hardwareAccelerated={false}
+                  isVisible={false}
+                  onHide={[Function]}
+                  transparent={true}
+                  visible={false}
+                />
+                <View
+                  style={
+                    {
+                      "marginTop": 50,
+                    }
+                  }
+                >
+                  <View
+                    accessibilityState={
+                      {
+                        "disabled": true,
+                      }
+                    }
+                    accessible={true}
+                    collapsable={false}
+                    focusable={true}
+                    onClick={[Function]}
+                    onResponderGrant={[Function]}
+                    onResponderMove={[Function]}
+                    onResponderRelease={[Function]}
+                    onResponderTerminate={[Function]}
+                    onResponderTerminationRequest={[Function]}
+                    onStartShouldSetResponder={[Function]}
+                    style={
+                      {
+                        "alignItems": "center",
+                        "backgroundColor": "#757575",
+                        "borderRadius": 10,
+                        "display": "flex",
+                        "flexDirection": "column",
+                        "justifyContent": "center",
+                        "opacity": 1,
+                        "paddingHorizontal": 10,
+                        "paddingVertical": 10,
+                      }
+                    }
+                  >
+                    <Text
+                      allowFontScaling={false}
+                      style={
+                        [
+                          {
+                            "fontSize": 16,
+                            "lineHeight": 24,
+                          },
+                          {
+                            "color": "#FFFFFF",
+                            "fontSize": 14,
+                          },
+                        ]
+                      }
+                    >
+                      Submit
+                    </Text>
+                  </View>
+                </View>
+              </View>
+            </RNCSafeAreaView>
+          </View>
+        </View>
+      </View>
+    </RNSScreen>
+  </RNSScreenStack>
+</RNCSafeAreaProvider>
+`;

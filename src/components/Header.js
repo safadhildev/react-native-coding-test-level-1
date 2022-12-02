@@ -16,12 +16,14 @@ const Header = ({ title, disableBackAction = false }) => {
     <View style={styles.headerContainer}>
       {!disableBackAction && (
         <View style={{ marginRight: 10 }}>
-          <TouchableOpacity onPress={onBack}>
+          <TouchableOpacity onPress={onBack} testID="header-back-button">
             <ArrowLeft color={colors.black} height={28} width={28} strokeWidth={3} />
           </TouchableOpacity>
         </View>
       )}
-      <Text style={styles.title}>{title}</Text>
+      <Text testID="header-title" style={styles.title}>
+        {title}
+      </Text>
     </View>
   );
 };

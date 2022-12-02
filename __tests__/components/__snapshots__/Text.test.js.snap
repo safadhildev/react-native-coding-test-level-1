@@ -1,0 +1,16 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`render test render component (Text) correctly 1`] = `
+<Text
+  allowFontScaling={false}
+  style={
+    [
+      {
+        "fontSize": 16,
+        "lineHeight": 24,
+      },
+      undefined,
+    ]
+  }
+/>
+`;
